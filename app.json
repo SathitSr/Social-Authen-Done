@@ -6,6 +6,9 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "plugins": [
+      "expo-apple-authentication"
+    ],
     "scheme": [
       "com.sathit1234.authen",
       "fb935325850948026"
@@ -20,6 +23,7 @@
     ],
     "ios": {
       "supportsTablet": true,
+      "usesAppleSignIn": true,
       "bundleIdentifier": "com.sathit1234.authen"
     },
     "android": {

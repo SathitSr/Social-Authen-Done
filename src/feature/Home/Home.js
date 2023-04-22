@@ -6,6 +6,7 @@ import * as Facebook from "expo-auth-session/providers/facebook";
 import * as WebBrowser from "expo-web-browser";
 import { useNavigation } from "@react-navigation/native";
 import * as Google from "expo-auth-session/providers/google";
+import * as AppleAuthentication from "expo-apple-authentication";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -75,8 +76,27 @@ const Home = () => {
   const FacebookAuth = () => {
     promptAsync();
   };
-  const AppleAuth = () => {
-    console.log("apple");
+  const AppleAuth = async () => {
+    console.log("check data : ");
+
+    try {
+      const credential = await AppleAuthentication.signInAsync({
+        requestedScopes: [
+          AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+          AppleAuthentication.AppleAuthenticationScope.EMAIL,
+        ],
+      });
+      // signed in
+
+      console.log("check data : ", credential);
+    } catch (e) {
+      console.log("error : ", e);
+      if (e.code === "ERR_REQUEST_CANCELED") {
+        // handle that the user canceled the sign-in flow
+      } else {
+        // handle other errors
+      }
+    }
   };
   return (
     <View
