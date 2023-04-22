@@ -19,6 +19,8 @@ PODS:
     - React-Core
     - React-RCTAppDelegate
     - ReactCommon/turbomodule/core
+  - ExpoSystemUI (2.2.1):
+    - ExpoModulesCore
   - ExpoWebBrowser (12.1.1):
     - ExpoModulesCore
   - EXSplashScreen (0.18.1):
@@ -396,6 +398,7 @@ DEPENDENCIES:
   - ExpoCrypto (from `../node_modules/expo-crypto/ios`)
   - ExpoKeepAwake (from `../node_modules/expo-keep-awake/ios`)
   - ExpoModulesCore (from `../node_modules/expo-modules-core`)
+  - ExpoSystemUI (from `../node_modules/expo-system-ui/ios`)
   - ExpoWebBrowser (from `../node_modules/expo-web-browser/ios`)
   - EXSplashScreen (from `../node_modules/expo-splash-screen/ios`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
@@ -462,6 +465,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-keep-awake/ios"
   ExpoModulesCore:
     :path: "../node_modules/expo-modules-core"
+  ExpoSystemUI:
+    :path: "../node_modules/expo-system-ui/ios"
   ExpoWebBrowser:
     :path: "../node_modules/expo-web-browser/ios"
   EXSplashScreen:
@@ -548,6 +553,7 @@ SPEC CHECKSUMS:
   ExpoCrypto: 9105610a09cd6290b900bd82fc5d190e489125a3
   ExpoKeepAwake: 69f5f627670d62318410392d03e0b5db0f85759a
   ExpoModulesCore: 6e0259511f4c4341b6b8357db393624df2280828
+  ExpoSystemUI: 0be5173ee2a7c01e9abc44f56d879a1eaaa16527
   ExpoWebBrowser: 033d34c478d9986da2f1679729041423837626e0
   EXSplashScreen: cd7fb052dff5ba8311d5c2455ecbebffe1b7a8ca
   FBLazyVector: a83ceaa8a8581003a623facdb3c44f6d4f342ac5

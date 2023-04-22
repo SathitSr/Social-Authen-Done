@@ -1,16 +1,16 @@
 import { View, Text, Image } from "react-native";
 const Detail = ({ route }) => {
-  const { userInfo } = route.params;
+  const { profile, name, email } = route.params;
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Image
         source={{
-          uri: userInfo.picture.data.url,
+          uri: profile,
         }}
         style={{ width: 100, height: 100, borderRadius: 50 }}
       />
-      <Text>{userInfo.name}</Text>
-      <Text>{userInfo.email}</Text>
+      <Text>{name}</Text>
+      <Text>{email}</Text>
     </View>
   );
 };

@@ -5,6 +5,7 @@ import * as AuthSession from "expo-auth-session";
 import * as Facebook from "expo-auth-session/providers/facebook";
 import * as WebBrowser from "expo-web-browser";
 import { useNavigation } from "@react-navigation/native";
+import * as Google from "expo-auth-session/providers/google";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -15,6 +16,42 @@ const Home = () => {
     clientId: "935325850948026",
   });
 
+  const [Googlerequest, Googleresponse, GooglepromptAsync] =
+    Google.useAuthRequest({
+      androidClientId:
+        "887674033555-oj4ss8dlvt98tos6dkr93im4kpp5rk50.apps.googleusercontent.com",
+      iosClientId:
+        "887674033555-otuepk5nvtjctqn2tch11aftr90vp3q2.apps.googleusercontent.com",
+      expoClientId:
+        "887674033555-iid78ccd8oj89sh0p6j1v0pfrgfdeocn.apps.googleusercontent.com",
+    });
+
+  useEffect(() => {
+    if (Googleresponse?.type === "success") {
+      getUserInfo(Googleresponse.authentication.accessToken);
+    }
+  }, [Googleresponse]);
+
+  const getUserInfo = async (token) => {
+    try {
+      const response = await fetch(
+        "https://www.googleapis.com/userinfo/v2/me",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      const user = await response.json();
+      navigation.navigate("Detail", {
+        profile: user.picture,
+        name: user.name,
+        email: user.email,
+      });
+    } catch (error) {
+      // Add your own error handler here
+    }
+  };
+
   useEffect(() => {
     if (response && response.type === "success" && response.authentication) {
       (async () => {
@@ -23,17 +60,20 @@ const Home = () => {
         );
         const userInfo = await userInfoResponse.json();
         // setUser(userInfo);
-        navigation.navigate("Detail", { userInfo: userInfo });
+        navigation.navigate("Detail", {
+          profile: userInfo.picture.data.url,
+          name: userInfo.name,
+          email: userInfo.email,
+        });
       })();
     }
   }, [response]);
 
-  const GoogleAuth = () => {
-    console.log("google");
+  const GoogleAuth = async () => {
+    GooglepromptAsync();
   };
-  const FacebookAuth = async () => {
-    const result = await promptAsync();
-    console.log("facebook ");
+  const FacebookAuth = () => {
+    promptAsync();
   };
   const AppleAuth = () => {
     console.log("apple");
